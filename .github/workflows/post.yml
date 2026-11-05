@@ -1,0 +1,63 @@
+name: Schedule YouTube uploads (channel 2)
+
+on:
+  schedule:
+    # Runs twice a day. Safe to run late or twice: it only fills empty slots.
+    - cron: "17 3 * * *"    # 08:47 IST
+    - cron: "17 15 * * *"   # 20:47 IST
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run: show the plan, upload nothing"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: yt2-schedule
+  cancel-in-progress: false
+
+jobs:
+  schedule:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Schedule next uploads
+        env:
+          DRY_RUN: ${{ inputs.dry_run }}
+          DRIVE_FOLDER_IDS: ${{ secrets.DRIVE_FOLDER_IDS }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          DRIVE_CLIENT_ID: ${{ secrets.DRIVE_CLIENT_ID }}
+          DRIVE_CLIENT_SECRET: ${{ secrets.DRIVE_CLIENT_SECRET }}
+          DRIVE_REFRESH_TOKEN: ${{ secrets.DRIVE_REFRESH_TOKEN }}
+          SLOT_PLAN: ${{ vars.SLOT_PLAN }}
+          DESCRIPTION_TEMPLATE: ${{ vars.DESCRIPTION_TEMPLATE }}
+          VIDEO_TAGS: ${{ vars.VIDEO_TAGS }}
+          DEFAULT_TITLE: ${{ vars.DEFAULT_TITLE }}
+          VIDEO_TITLE: ${{ vars.VIDEO_TITLE }}
+          MADE_FOR_KIDS: ${{ vars.MADE_FOR_KIDS }}
+          VIDEO_LANGUAGE: ${{ vars.VIDEO_LANGUAGE }}
+          CATEGORY_ID: ${{ vars.CATEGORY_ID }}
+          CONTAINS_SYNTHETIC: ${{ vars.CONTAINS_SYNTHETIC }}
+        run: python post_youtube.py
+
+      - name: Save progress
+        if: ${{ always() }}
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@users.noreply.github.com"
+          if [ -f state.json ]; then git add state.json; fi
+          git diff --cached --quiet || (git commit -m "Update schedule state" && git pull --rebase && git push)
