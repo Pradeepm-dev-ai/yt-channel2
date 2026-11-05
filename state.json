@@ -2,7 +2,10 @@
   "used": [
     "19ZYL2Z5kBVZZ4BS6mO4vDEa5pocRuWx0",
     "1qPjPVyZ7VQu1uwap2RiXnECnRREUX6gN",
-    "1ZTiy0BAWcs166qHoeJ5Lg90koV4yRKb5"
+    "1ZTiy0BAWcs166qHoeJ5Lg90koV4yRKb5",
+    "1Q12yTo2k0Uu503O_RCYzrv8sLG3eC3Xh",
+    "1HOkW54tiZvEz33riOIRC3e09FoWYUqB7",
+    "1ZVCQMN2XBoswpwCDPO37XXrtKYGJ7JZV"
   ],
   "slots": {
     "2026-11-06T09:00:00+05:30": {
@@ -16,6 +19,18 @@
     "2026-11-06T18:00:00+05:30": {
       "file": "\u092a\u0942\u091b\u0924\u093e \u0939\u0948 \u092d\u093e\u0930\u0924 - Kahani _ Hindi Kahaniya _ Bedtime Moral Stories _ Hindi Fairy Tales _ Funny story(720P_HD).mp4",
       "youtube_id": "C7ivAanArOc"
+    },
+    "2026-11-07T09:00:00+05:30": {
+      "file": "\u092a\u0947\u0902\u091f\u093f\u0902\u0917 \u0935\u093e\u0932\u0940 \u091a\u0941\u0921\u0948\u0932 _ Hindi Story _ Moral Stories _ Kahaniya _ Stories _ Hindi Kahaniya _ New story(720P_HD).mp4",
+      "youtube_id": "whSlyWsjlmk"
+    },
+    "2026-11-07T16:00:00+05:30": {
+      "file": "\u092a\u0948\u0938\u093e \u0938\u092c \u0915\u0941\u091b \u0924\u094b \u0928\u0939\u0940 - Saas Bahu Ki Kahaniya _ Moral Stories in Hindi _ Hindi TV Story _ funny story(720P_HD).mp4",
+      "youtube_id": "7ANg6-nRjMc"
+    },
+    "2026-11-07T18:00:00+05:30": {
+      "file": "\u092c\u091a\u0924 \u0935\u093e\u0932\u0940 \u092c\u0939\u0941 - Hindi kahaniya _ Hindi Story _ Moral Stories _ Kahaniya _ Hindi Stories _ Story(720P_HD).mp4",
+      "youtube_id": "WhLr7o7uciA"
     }
   }
 }
